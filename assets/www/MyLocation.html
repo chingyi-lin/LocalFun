@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <title>LocalFun</title>
+ <meta charset = "UTF-8"/>
+ <meta content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" name="viewport"/>
+ <script type="text/javascript" charset="utf-8" src="cordova-2.9.0.js"></script>
+ <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a1/jquery.mobile-1.0a1.min.css" />
+ <script src="http://code.jquery.com/jquery-1.4.3.min.js"></script>
+ <script src="http://code.jquery.com/mobile/1.0a1/jquery.mobile-1.0a1.min.js"></script>
+ <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+ </head>
+<body>
+ 
+<div data-role="page">
+ <div data-role="header">
+ <h1>LocalFun</h1>
+ </div><!-- /header -->
+
+ <div data-role = "content">
+  <h4>我的位置</h4>
+  <script>
+
+  if (navigator.geolocation) {
+    // Get the User’s Position
+    var options = {
+      enableHighAccuracy: false,
+      maximumAge: 10,
+      timeout: 45000
+    };
+    
+    // successCallback
+    function successHandler(location) {   
+      var message = document.getElementById("message"), html = [];
+      html.push("<img width='256' height='256' src='http://maps.google.com/maps/api/staticmap?center=", location.coords.latitude, ",", location.coords.longitude, "&markers=size:small|color:blue|", location.coords.latitude, ",", location.coords.longitude, "&zoom=16&size=256x256&sensor=false' />");
+      html.push("<p>Longitude: ", location.coords.longitude, "</p>");
+      html.push("<p>Latitude: ", location.coords.latitude, "</p>");
+      html.push("<p>Accuracy: ", location.coords.accuracy, " meters</p>");
+      message.innerHTML = html.join("");
+    }
+    
+    // errorCallback
+    function errorHandler(error) {
+      alert('Attempt to get location failed: ' + error.message);
+    }   
+    
+    navigator.geolocation.getCurrentPosition(successHandler, errorHandler, options);
+  }
+  else {
+    alert("Sorry, your browser not support HTML5 Geolocation API.");
+  }
+
+  </script>
+ </div><!-- /content -->
+ 
+ <div data-role="footer">
+ 	<div data-role="navbar">
+ 	<ul>
+ 	<li><a href="task.html" data-icon="grid" data-iconpos="top" data-transistion="flip">Tasks</a></li>
+ 	<li><a href="index.html" data-icon="home" data-iconpos="top">Home</a></li>
+ 	<li><a href="MyLocation.html" data-icon="map" data-iconpos="top" data-transistion="flip">Map</a></li>
+  <li><a href="#" data-icon="gear" data-iconpos="top" data-transistion="flip">Go</a></li>
+ </ul>
+ </div><!-- /navbar -->
+ </div><!-- /footer -->
+</div><!-- /page -->
+ 
+</body>
+</html>

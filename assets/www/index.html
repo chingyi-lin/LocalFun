@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
  <head>
- <title>jQuery Mobile Tutorial on Codeforest.net</title>
+ <title>LocalFun</title>
+ <meta charset = "UTF-8"/>
+ <meta content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" name="viewport"/>
  <script type="text/javascript" charset="utf-8" src="cordova-2.9.0.js"></script>
  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a1/jquery.mobile-1.0a1.min.css" />
  <script src="http://code.jquery.com/jquery-1.4.3.min.js"></script>
@@ -10,43 +12,45 @@
 <body>
  
 <div data-role="page">
- 
  <div data-role="header">
  <h1>LocalFun</h1>
+  <div class="LoginLink" >
+    <a id="HeaderSignUp" href="/user/register" right="0">Sign Up</a>
+    <a id="HeaderLogin" href="/user/login?ReturnUrl=%2Fuser%2Fmyprofile" right="0">Login</a>
+  </div>
  </div><!-- /header -->
- 
- <div data-role="content">
- <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
-  <li data-role="list-divider">任務列表</li>
-  <li><a href="#">
-  	<img src="images/StoreLogo.png" />
-  	<h3>親近水岸</h3>
-  	<p>經驗值：15 獎勵：八里船票</p>
-    </a></li>
-  <li><a href="#">
- 	<img src="images/StoreLogo.png" />
-  	<h3>河岸留言</h3>
-  	<p>經驗值：15 獎勵：啤酒一瓶</p>
-  	</a></li>
-  <li><a href="#">
-	<img src="images/StoreLogo.png" />
-  	<h3>台大公園</h3>
-  	<p>經驗值：15 獎勵：台大農產品50元抵用卷一張</p>
-  </a></li>
-  <li><a href="#">
-  	<img src="images/StoreLogo.png" />
-  	<h3>冰涼一夏</h3>
-  	<p>經驗值：15 獎勵：九份阿婆芋圓一份</p>
-  </a></li>
-</ul>
+ <div data-role = "content">
+  <div class="ui-grid-a">
+    <div class="ui-block-a" style="height:60px">
+      <img src = "images/StoreLogo.png" class = "ui-block-a"/ style="height:60px">
+    </div>
+    <div class="ui-block-b" id="Avatar">
+      <p>
+        名稱：林敬沂</br>
+        等級：15等</br>
+        目前進行任務：Ubike放暑假</br></br>
+      </p>
+    </div>
+  </div>
+  <div class="ui-grid-b">
+    <a href="#" class="" data-role="button" data-inline="true" >任務記錄</a>
+    <a href="#" class="" data-role="button" data-inline="true" >我的足跡</a>
+
+  </div><div class="ui-grid-b">
+    <a href="#" class="" data-role="button" data-inline="true" >獎品庫</a>
+    <a href="#" class="" data-role="button" data-inline="true" >徽章庫</a></div>
+
+  <div id="History">
+
  </div><!-- /content -->
  
  <div data-role="footer">
  	<div data-role="navbar">
  	<ul>
- 	<li><a href="task.html" data-icon="grid" data-iconpos="top">Tasks</a></li>
- 	<li><a href="#" data-icon="home" data-iconpos="top">Home</a></li>
- 	<li><a href="#" data-icon="gear" data-iconpos="top">Settings</a></li>
+ 	<li><a href="task.html" data-icon="grid" data-iconpos="top" data-transistion="flip">Tasks</a></li>
+ 	<li><a href="index.html" data-icon="home" data-iconpos="top" data-transistion="flip">Home</a></li>
+  <li><a href="MyLocation.html" data-icon="map" data-iconpos="top" data-transistion="flip">Map</a></li>
+ 	<li><a href="#" data-icon="gear" data-iconpos="top" data-transistion="flip">Go</a></li>
  </ul>
  </div><!-- /navbar -->
  </div><!-- /footer -->
