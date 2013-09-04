@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LocalFun</title>
+    <meta charset = "UTF-8"/>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <!--Including Other Script like jquery, jquermobile-->
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+    <!--Including CSS Style-->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+    <!--Including Other Resource-->
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUIxTb_ba3zj40nvnjnLHPt00dPy4Ml0E&sensor=true"></script>
+    </script>
+    <script type="text/javascript" charset="utf-8">
+    function showConfirm(TaskNumber) {//not verified
+	    navigator.notification.confirm(
+	        '確定接收此任務？', // message
+	        receiveTask(TaskNumber),            // callback to invoke with index of button pressed
+	        '接收任務',           // title
+	        '確認,取消'         // buttonLabels
+	    );
+		}
+    function receiveTask(TaskNumber){//not verified
+      var i = parseInt(window.localStorage["TaskIndex"]);
+      if(i>3){
+        navigator.notification.alert(
+            '你接太多任務囉，最多只能同時接收3個任務，若欲放棄可點選下方「任務」按鈕。',  // message
+            function(){
+            	window.scrollTo(0,document.body.scrollHeight);//not verified
+            },         // callback
+            '任務數量已達上限',            // title
+            '確認'                  // buttonName
+        );
+      } else{ 
+	      var MyTask = JSON.parse(window.localStorage["MyTask"]);
+	      MyTask[i+1] = TaskNumber;
+	      window.localStorage["TaskIndex"] = String(i+1);
+	      window.localStorage["MyTask"] = JSON.stringify(MyTask);
+	      navigator.notification.alert(
+            '已接受任務',  // message
+            function(){
+            	window.scrollTo(0,document.body.scrollHeight);//not verified
+            },         // callback
+            '成功',            // title
+            '確認'                  // buttonName
+        );
+	     }
+    }
+    var taskName;
+    var allNum;
+    var data;
+    function parse(json) {
+      alert("Mom! I'm here");//Good!
+      allNum = json.feed.entry.length;//任務數量
+      data = json;
+    }
+    var taskName;
+    function showTask(i) {
+      document.write('TaskInfo');
+      taskName = data.feed.entry[i].gsx$taskname.$t;//json.feed.entry[0].gsx$問題標題.$t
+      document.write(taskName);
+    }
+    </script>
+    <script type='text/javascript' src='https://spreadsheets.google.com/feeds/list/0AkBdl0Fc6iHkdGREVEE2UUoydE4zSVFJaGtXMi02clE/od6/public/values?alt=json-in-script&callback=parse'>
+    </script> 
+  </head>
+  <body>
+    <div data-role="page">
+      <div data-role="header">
+      <h1>LocalFun</h1>
+      </div><!-- /header -->
+      <div data-role = "content">
+        <script type="text/javascript" charset="utf-8">
+        showTask(0);
+        alert("here");</script>
+        <h3>LocalFun:"Hello, World"</h3>
+        <h4>時間：</h4>
+        <p> 2013/07/31~2013/08/15 </p>
+        <h4>任務地點：</h4>
+      <p>不限</p>  
+        <h4>任務內容：</h4>
+        <p>記錄第一次的LocalFun！</br></p>
+        <h4>完成條件：</h4>
+        <p> 1. 按右下角Map圖示，記錄現在地點</p>
+      <p> 2. 用手機相機為這個地方拍一張照。</p>
+        <h5>經驗/獎勵：</h5>
+      <p> 15 / 無 </p>
+      <a href="#" data-role="button" data-inline="true" onclick="receiveTask(1)">接收任務</a>
+      </div><!-- /content -->
+      <div data-role="footer">
+        <div data-role="navbar">
+          <ul>
+            <li><a href="task.html" data-icon="grid" data-iconpos="top" data-transistion="flip">Tasks</a></li>
+            <li><a href="index.html" data-icon="home" data-iconpos="top" data-transistion="flip">Home</a></li>
+            <li><a href="MyLocation.html" data-icon="map" data-iconpos="top" data-transistion="flip">Map</a></li>
+            <li><a href="#" data-icon="gear" data-iconpos="top" data-transistion="flip">Go</a></li>
+          </ul>
+       </div><!-- /navbar -->
+      </div><!-- /footer -->
+    </div><!-- /page -->    
+  </body>
+</html>
