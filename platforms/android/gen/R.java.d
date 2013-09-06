@@ -1,4 +1,4 @@
-/Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/gen/com/LocalFun/R.java \
+/Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/gen/com/Lofox/LocalFun/R.java \
  : /Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/res/drawable/icon.png \
 /Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/res/drawable-hdpi/ic_launcher.png \
 /Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/res/drawable-hdpi/icon.png \

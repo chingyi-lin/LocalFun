@@ -42,8 +42,9 @@
       // Now safe to use device APIs
       // Register the event listener
         //document.addEventListener("menubutton", onMenuKeyDown, false);
-        document.addEventListener("resume", onResume, false);
+        //alert('Ready');
         Initialize();//for device
+        document.addEventListener("resume", onResume, false);
       }
       function onResume() {
       	alert('Resume');
@@ -55,13 +56,13 @@
       }
       // Load the user data from local storage
       function Initialize(){
-        var currentUser = JSON.parse(window.localStorage.getItem("user"));
         window.localStorage.clear();//clean it for testing
+        alert('Initialize');
         if(window.localStorage.getItem("Name")){
           alert('Yes Name');
           // there is an object in user
         } else {
-          alert('No Name');
+          // alert('No Name');
           // the "user" key does not have any value
           // Create a user
           var MyTask = new Array(3);
@@ -69,21 +70,23 @@
           window.localStorage.setItem("Level", '1');
           window.localStorage.setItem("Photo", null);
           window.localStorage.setItem("TaskIndex", '1');
+          window.localStorage.setItem("CurrentTask", '1');
           var TaskIndex = parseInt(window.localStorage["TaskIndex"]);
-          MyTask[TaskIndex] = 0;//to-do:transfer it to task No.
+          MyTask[TaskIndex] = '1';//to-do:transfer it to task No.
           window.localStorage["MyTask"] = JSON.stringify(MyTask);
           //未來取用JSON.parse(window.localStorage["MyTask"])
           //window.localStorage.setItem("Task", "UBike放暑假");
           //需在手機上測試
+          
           navigator.notification.alert(
             '您好！歡迎使用LocalFun，讓您的世界更有趣</br>現在請跟我們一起大聲對這個世界說："Hello, World!"',  // message
             Goto,         // callback
-            'Game Over',            // title
-            'Done'                  // buttonName
+            '歡迎來到LocalFun',            // title
+            '走吧！'                  // buttonName
         	);
         }
-        function Goto(){
-        	alert("Goto!");//導航至TaskDefault
+        function Goto(){//Check!
+        	//導航至TaskDefault
         	window.location.href='TaskDefault.html';
         }
         //Create a user
@@ -92,13 +95,14 @@
           this.Level = window.localStorage.getItem("Level");
           this.Photo = window.localStorage.getItem("Photo");
           this.TaskIndex = window.localStorage.getItem("TaskIndex");
-          this.MyTask = window.localStorage.getItem("MyTask");
+          this.MyTask = JSON.parse(window.localStorage.getItem("MyTask"));
+          this.CurrentTask = window.localStorage.getItem("CrrentTask");
         };
       }
     </script>
     <script type="text/javascript" charset="utf-8">
     	//For Web Test
-    	Initialize();
+    	//Initialize();
     </script>
 
   </head>
@@ -139,7 +143,7 @@
               <p>電影、藝文、台北中山區</p>
               <p>經驗值：15 獎勵：八里船票</p>
             </a></li>
-            <li><a href="TaskDefault.html">
+            <li><a href="TaskDefault.html" rel="external">
               <img src="img/riverbank.png" />
               <h3>河岸留言：香蕉小姐</h3>
               <p>搖滾、藝文、台北大安區</p>
@@ -159,9 +163,9 @@
      <div data-role="footer">
       <div data-role="navbar">
       <ul>
-      <li><a href="TaskDefault.html" data-icon="grid" data-iconpos="top" data-transistion="flip">Tasks</a></li>
-      <li><a href="index.html" data-icon="home" data-iconpos="top" data-transistion="flip">Home</a></li>
-      <li><a href="MyLocation.html" data-icon="map" data-iconpos="top" data-transistion="flip">Map</a></li>
+      <li><a href="TaskDefault.html" rel="external" data-icon="grid" data-iconpos="top" data-transistion="flip">Tasks</a></li>
+      <li><a href="index.html" rel="external" data-icon="home" data-iconpos="top" data-transistion="flip">Home</a></li>
+      <li><a href="MyLocation.html" rel="external" data-icon="map" data-iconpos="top" data-transistion="flip">Map</a></li>
       <li><a href="#" data-icon="gear" data-iconpos="top" data-transistion="flip">Go</a></li>
      </ul>
      </div><!-- /navbar -->

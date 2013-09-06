@@ -1,12 +1,12 @@
 /Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/classes.dex : \
-/Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/classes/com/LocalFun/BuildConfig.class \
-/Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/classes/com/LocalFun/LocalFunHere.class \
-/Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/classes/com/LocalFun/R$attr.class \
-/Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/classes/com/LocalFun/R$drawable.class \
-/Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/classes/com/LocalFun/R$layout.class \
-/Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/classes/com/LocalFun/R$string.class \
-/Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/classes/com/LocalFun/R$xml.class \
-/Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/classes/com/LocalFun/R.class \
+/Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/classes/com/Lofox/LocalFun/BuildConfig.class \
+/Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/classes/com/Lofox/LocalFun/LocalFun.class \
+/Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/classes/com/Lofox/LocalFun/R$attr.class \
+/Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/classes/com/Lofox/LocalFun/R$drawable.class \
+/Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/classes/com/Lofox/LocalFun/R$layout.class \
+/Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/classes/com/Lofox/LocalFun/R$string.class \
+/Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/classes/com/Lofox/LocalFun/R$xml.class \
+/Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/classes/com/Lofox/LocalFun/R.class \
 /Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/classes/org/apache/cordova/camera/CameraLauncher.class \
 /Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/classes/org/apache/cordova/dialogs/Notification$1$1.class \
 /Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/classes/org/apache/cordova/dialogs/Notification$1$2.class \
@@ -31,5 +31,7 @@
 /Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/classes/org/apache/cordova/geolocation/GeoBroker.class \
 /Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/classes/org/apache/cordova/geolocation/GPSListener.class \
 /Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/classes/org/apache/cordova/geolocation/NetworkListener.class \
+/Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/classes/org/apache/cordova/networkinformation/NetworkManager$1.class \
+/Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/classes/org/apache/cordova/networkinformation/NetworkManager.class \
 /Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/classes/org/apache/cordova/vibration/Vibration.class \
 /Users/Ching-Yi/Documents/workspace_adt/LocalFun/platforms/android/bin/dexedLibs/cordova-3.0.0-0350aa29af9f668baa8318a2499dc164.jar \
