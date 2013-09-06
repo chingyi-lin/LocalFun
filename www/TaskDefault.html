@@ -53,15 +53,26 @@
     var allNum;
     var data;
     function parse(json) {
-      alert("Mom! I'm here");//Good!
       allNum = json.feed.entry.length;//任務數量
       data = json;
     }
-    var taskName;
+    var taskName, taskTime, taskContent, taskRequest, taskReward, taskLocal, taskRegion, taskNumber;
+    
     function showTask(i) {
-      document.write('TaskInfo');
       taskName = data.feed.entry[i].gsx$taskname.$t;//json.feed.entry[0].gsx$問題標題.$t
-      document.write(taskName);
+      taskTime = data.feed.entry[i].gsx$tasktime.$t;
+      taskContent = data.feed.entry[i].gsx$taskcontent.$t;
+      taskRequest = data.feed.entry[i].gsx$taskrequest.$t;
+      taskReward = data.feed.entry[i].gsx$taskreward.$t;
+      taskLocal = data.feed.entry[i].gsx$tasklocal.$t;
+      taskRegion = data.feed.entry[i].gsx$taskregion.$t;
+      taskNumber = data.feed.entry[i].gsx$tasknumber.$t;
+      document.write('<h3>' + taskName + '</h3>');
+      document.write('<h4>時間：</h4><p>' + taskTime + '</p>');
+      document.write('<h4>任務地點：</h4><p>' + taskLocal + '</p>');
+      document.write('<h4>任務內容：</h4><p>' + taskContent + '</p>');
+      document.write('<h4>完成條件：</h4><p>' + taskRequest + '</p>');
+      document.write('<h4>經驗/獎勵：</h4><p>' + taskReward + '</p>');
     }
     </script>
     <script type='text/javascript' src='https://spreadsheets.google.com/feeds/list/0AkBdl0Fc6iHkdGREVEE2UUoydE4zSVFJaGtXMi02clE/od6/public/values?alt=json-in-script&callback=parse'>
@@ -75,28 +86,18 @@
       <div data-role = "content">
         <script type="text/javascript" charset="utf-8">
         showTask(0);
-        alert("here");</script>
-        <h3>LocalFun:"Hello, World"</h3>
-        <h4>時間：</h4>
-        <p> 2013/07/31~2013/08/15 </p>
-        <h4>任務地點：</h4>
-      <p>不限</p>  
-        <h4>任務內容：</h4>
-        <p>記錄第一次的LocalFun！</br></p>
-        <h4>完成條件：</h4>
-        <p> 1. 按右下角Map圖示，記錄現在地點</p>
-      <p> 2. 用手機相機為這個地方拍一張照。</p>
-        <h5>經驗/獎勵：</h5>
-      <p> 15 / 無 </p>
+        </script>
       <a href="#" data-role="button" data-inline="true" onclick="receiveTask(1)">接收任務</a>
+      <a href="#" data-role="button" data-inline="true" onclick="receiveTask(2)">接收任務</a>
+      <a href="#" data-role="button" data-inline="true" onclick="receiveTask(3)">接收任務</a>
       </div><!-- /content -->
       <div data-role="footer">
         <div data-role="navbar">
           <ul>
-            <li><a href="task.html" data-icon="grid" data-iconpos="top" data-transistion="flip">Tasks</a></li>
-            <li><a href="index.html" data-icon="home" data-iconpos="top" data-transistion="flip">Home</a></li>
-            <li><a href="MyLocation.html" data-icon="map" data-iconpos="top" data-transistion="flip">Map</a></li>
-            <li><a href="#" data-icon="gear" data-iconpos="top" data-transistion="flip">Go</a></li>
+            <li><a href="TaskDefault.html" rel="external" data-icon="grid" data-iconpos="top" data-transistion="flip">Tasks</a></li>
+			      <li><a href="index.html" rel="external" data-icon="home" data-iconpos="top" data-transistion="flip">Home</a></li>
+			      <li><a href="MyLocation.html" rel="external" data-icon="map" data-iconpos="top" data-transistion="flip">Map</a></li>
+			      <li><a href="#" data-icon="gear" data-iconpos="top" data-transistion="flip">Go</a></li>
           </ul>
        </div><!-- /navbar -->
       </div><!-- /footer -->
