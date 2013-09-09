@@ -1,0 +1,22 @@
+.TaskInfo p {
+    font-size:12px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:left;
+}
+
+.TaskInfo h4 {
+    font-size:16px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:12px 0px 5px;
+    text-align:left;
+}
+
+#map-canvas { 
+    height: 500px;
+    width: 500px;
+}

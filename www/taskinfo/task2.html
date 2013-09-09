@@ -11,6 +11,7 @@
     <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
     <!--Including CSS Style-->
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+    <link rel="stylesheet" href="../css/LocalFun.css" type="text/css"/>
     <!--Including Other Resource-->
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUIxTb_ba3zj40nvnjnLHPt00dPy4Ml0E&sensor=true"></script>
@@ -59,6 +60,7 @@
     }
     
     function showTask(i) {
+    	i = i-1;
       var taskName = data.feed.entry[i].gsx$taskname.$t;//json.feed.entry[0].gsx$問題標題.$t
       var taskTime = data.feed.entry[i].gsx$tasktime.$t;
       var taskContent = data.feed.entry[i].gsx$taskcontent.$t;
@@ -84,12 +86,12 @@
       <h1>LocalFun</h1>
       </div><!-- /header -->
       <div data-role = "content">
+      	<div id = "TaskInfo">
         <script type="text/javascript" charset="utf-8">
-        showTask(0);
+        showTask(2);
         </script>
-      <a href="#" data-role="button" data-inline="true" onclick="receiveTask(1)">接收任務</a>
+       </div>
       <a href="#" data-role="button" data-inline="true" onclick="receiveTask(2)">接收任務</a>
-      <a href="#" data-role="button" data-inline="true" onclick="receiveTask(3)">接收任務</a>
       </div><!-- /content -->
       <div data-role="footer">
         <div data-role="navbar">
@@ -97,7 +99,7 @@
             <li><a href="TaskDefault.html" rel="external" data-icon="grid" data-iconpos="top" data-transistion="flip">Tasks</a></li>
 			      <li><a href="index.html" rel="external" data-icon="home" data-iconpos="top" data-transistion="flip">Home</a></li>
 			      <li><a href="MyLocation.html" rel="external" data-icon="map" data-iconpos="top" data-transistion="flip">Map</a></li>
-			      <li><a href="#" data-icon="gear" data-iconpos="top" data-transistion="flip">Go</a></li>
+			      <li><a href="StartTask.html" data-icon="gear" data-iconpos="top" data-transistion="flip">Go</a></li>
           </ul>
        </div><!-- /navbar -->
       </div><!-- /footer -->

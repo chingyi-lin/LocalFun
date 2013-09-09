@@ -23,11 +23,13 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type ='text/javascript' charset="utf-8" src="js/LocalFun.js"></script>
     <!--Including Other Script like jquery, jquermobile-->
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
     <!--Including CSS Style-->
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+     
     <title>LocalFun</title>
 
     <script type="text/javascript" charset="utf-8">
@@ -56,8 +58,8 @@
       }
       // Load the user data from local storage
       function Initialize(){
-        window.localStorage.clear();//clean it for testing
-        alert('Initialize');
+        //window.localStorage.clear();//clean it for testing
+        //alert('Initialize');
         if(window.localStorage.getItem("Name")){
           alert('Yes Name');
           // there is an object in user
@@ -66,18 +68,24 @@
           // the "user" key does not have any value
           // Create a user
           var MyTask = new Array(3);
+          var MyPassTask = new Array(100);
           window.localStorage.setItem("Name", 'Avatar');
           window.localStorage.setItem("Level", '1');
+          window.localStorage.setItem("Exp", '0');
+          window.localStorage.setItem("NextLevelExp", '30');
           window.localStorage.setItem("Photo", null);
-          window.localStorage.setItem("TaskIndex", '1');
-          window.localStorage.setItem("CurrentTask", '1');
+          window.localStorage.setItem("TaskIndex", '1');//目前已經完成了幾個
+          window.localStorage.setItem("CurrentTask", '1');//紀錄
+          window.localStorgae.setItem("NumOfPassTask", '0');//記錄已完成的任務數量
+          
           var TaskIndex = parseInt(window.localStorage["TaskIndex"]);
           MyTask[TaskIndex] = '1';//to-do:transfer it to task No.
           window.localStorage["MyTask"] = JSON.stringify(MyTask);
+          window.localStorage["MyPassTask"] = JSON.string(MyPassTask);//now it's null
           //未來取用JSON.parse(window.localStorage["MyTask"])
           //window.localStorage.setItem("Task", "UBike放暑假");
           //需在手機上測試
-          
+          UpdateUserPosition();
           navigator.notification.alert(
             '您好！歡迎使用LocalFun，讓您的世界更有趣</br>現在請跟我們一起大聲對這個世界說："Hello, World!"',  // message
             Goto,         // callback
@@ -90,14 +98,31 @@
         	window.location.href='TaskDefault.html';
         }
         //Create a user
+        currentUser = new User();
+        /*hide it. 之後從LocalFun.js
         var currentUser = new function(){
           this.Name = window.localStorage.getItem("Name");
           this.Level = window.localStorage.getItem("Level");
+          this.Exp = window.localStorage.getItem("Exp");
+          this.NextLevelExp = window.localStorage.getItem("NextLevelExp");
           this.Photo = window.localStorage.getItem("Photo");
-          this.TaskIndex = window.localStorage.getItem("TaskIndex");
-          this.MyTask = JSON.parse(window.localStorage.getItem("MyTask"));
+          this.TaskIndex = parseInt(window.localStorage.getItem("TaskIndex"));
           this.CurrentTask = window.localStorage.getItem("CrrentTask");
+          this.NumOfPassTask = window.localStorage.getItem("NumOfPassTask");
+          this.MyTask = JSON.parse(window.localStorage.getItem("MyTask"));
+          this.update = function(){//是要從誰更新誰咧？
+	          this.Name = window.localStorage.getItem("Name");
+          	this.Level = window.localStorage.getItem("Level");
+	          this.Exp = window.localStorage.getItem("Exp");
+	          this.NextLevelExp = window.localStorage.getItem("NextLevelExp");
+	          this.Photo = window.localStorage.getItem("Photo");
+	          this.TaskIndex = parseInt(window.localStorage.getItem("TaskIndex"));
+	          this.CurrentTask = window.localStorage.getItem("CrrentTask");
+	          this.NumOfPassTask = window.localStorage.getItem("NumOfPassTask");
+	          this.MyTask = JSON.parse(window.localStorage.getItem("MyTask"));
+          };
         };
+        */
       }
     </script>
     <script type="text/javascript" charset="utf-8">
@@ -130,24 +155,24 @@
             </script>
             <p id = "currenttask">目前進行任務：Ubike放暑假</p>
             <script type="text/javascript" charset="utf-8">
-            document.getElementById("username").innerHTML = "目前進行任務："+currentUser.Level;
+            document.getElementById("username").innerHTML = "目前進行任務："+currentUser.CurrentTask;
             </script>
           </div>
         </div>
         <div id = "Recommand Task">
           <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
             <li data-role="list-divider">今日推薦</li>
-            <li><a href="#">
-              <img src="img/oslo.png" />
-              <h3>Oslo, AUGUST 31st</h3>
-              <p>電影、藝文、台北中山區</p>
-              <p>經驗值：15 獎勵：八里船票</p>
-            </a></li>
-            <li><a href="TaskDefault.html" rel="external">
+            <li><a href="taskinfo/task2.html" rel="external">
               <img src="img/riverbank.png" />
               <h3>河岸留言：香蕉小姐</h3>
               <p>搖滾、藝文、台北大安區</p>
               <p>經驗值：15 獎勵：啤酒一瓶</p>
+            </a></li>
+            <li><a href="taskinfo/task3.html">
+              <img src="img/oslo.png" />
+              <h3>Oslo, AUGUST 31st</h3>
+              <p>電影、藝文、台北中山區</p>
+              <p>經驗值：15 獎勵：八里船票</p>
             </a></li>
           </ul>
         </div>
@@ -166,7 +191,7 @@
       <li><a href="TaskDefault.html" rel="external" data-icon="grid" data-iconpos="top" data-transistion="flip">Tasks</a></li>
       <li><a href="index.html" rel="external" data-icon="home" data-iconpos="top" data-transistion="flip">Home</a></li>
       <li><a href="MyLocation.html" rel="external" data-icon="map" data-iconpos="top" data-transistion="flip">Map</a></li>
-      <li><a href="#" data-icon="gear" data-iconpos="top" data-transistion="flip">Go</a></li>
+      <li><a href="StartTask.html" data-icon="gear" data-iconpos="top" data-transistion="flip">Go</a></li>
      </ul>
      </div><!-- /navbar -->
      </div><!-- /footer -->
