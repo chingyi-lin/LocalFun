@@ -58,48 +58,56 @@
       }
       // Load the user data from local storage
       function Initialize(){
-        //window.localStorage.clear();//clean it for testing
-        //alert('Initialize');
+        window.localStorage.clear();//clean it for testing
+        alert('Initialize');
         if(window.localStorage.getItem("Name")){
-          alert('Yes Name');
+          alert('歡迎再次回到LocalFun!');
           // there is an object in user
         } else {
-          // alert('No Name');
+          alert('歡迎您使用LocalFun!');//No name
           // the "user" key does not have any value
           // Create a user
-          var MyTask = new Array(3);
-          var MyPassTask = new Array(100);
+          var mytask = new Array(3);
+          var mypasstask = new Array(50);
           window.localStorage.setItem("Name", 'Avatar');
           window.localStorage.setItem("Level", '1');
           window.localStorage.setItem("Exp", '0');
           window.localStorage.setItem("NextLevelExp", '30');
           window.localStorage.setItem("Photo", null);
-          window.localStorage.setItem("TaskIndex", '1');//目前已經完成了幾個
-          window.localStorage.setItem("CurrentTask", '1');//紀錄
-          window.localStorgae.setItem("NumOfPassTask", '0');//記錄已完成的任務數量
-          
-          var TaskIndex = parseInt(window.localStorage["TaskIndex"]);
+          window.localStorage.setItem("TaskIndex", '1');//目前已經接了幾個
+          window.localStorage.setItem("CurrentTask", '1');//紀錄我在做哪一個
+          window.localStorage.setItem("CurrentTaskProgress", '0');//記錄進度, 百分比
+          window.localStorage.setItem("NumOfPassTask", '0');
           MyTask[TaskIndex] = '1';//to-do:transfer it to task No.
-          window.localStorage["MyTask"] = JSON.stringify(MyTask);
-          window.localStorage["MyPassTask"] = JSON.string(MyPassTask);//now it's null
+          window.localStorage["MyTask"] = JSON.stringify(mytask);
+          window.localStorage["MyPassTask"] = JSON.stringfy(mypasstask);//now it's null
           //未來取用JSON.parse(window.localStorage["MyTask"])
           //window.localStorage.setItem("Task", "UBike放暑假");
-          //需在手機上測試
-          UpdateUserPosition();
           navigator.notification.alert(
-            '您好！歡迎使用LocalFun，讓您的世界更有趣</br>現在請跟我們一起大聲對這個世界說："Hello, World!"',  // message
-            Goto,         // callback
-            '歡迎來到LocalFun',            // title
-            '走吧！'                  // buttonName
-        	);
+	            '您好！歡迎使用LocalFun，讓您的世界更有趣</br>現在請跟我們一起大聲對這個世界說："Hello, World!"',  // message
+	            Goto,         // callback
+	            '歡迎來到LocalFun',            // title
+	            '走吧！'                  // buttonName
+	        	);
+          UpdateUserPosition();
+          /**
+          if (!IsLuched){//搭配local storage clear使用
+	          navigator.notification.alert(
+	            '您好！歡迎使用LocalFun，讓您的世界更有趣</br>現在請跟我們一起大聲對這個世界說："Hello, World!"',  // message
+	            Goto,         // callback
+	            '歡迎來到LocalFun',            // title
+	            '走吧！'                  // buttonName
+	        	);
+	        	IsLunched = true;
+        	}
+        	**/
         }
-        function Goto(){//Check!
-        	//導航至TaskDefault
+        function Goto(){
         	window.location.href='TaskDefault.html';
         }
         //Create a user
-        currentUser = new User();
-        /*hide it. 之後從LocalFun.js
+        //currentUser = new User();
+        /*hide it. 之後從LocalFun.js*/
         var currentUser = new function(){
           this.Name = window.localStorage.getItem("Name");
           this.Level = window.localStorage.getItem("Level");
@@ -107,9 +115,11 @@
           this.NextLevelExp = window.localStorage.getItem("NextLevelExp");
           this.Photo = window.localStorage.getItem("Photo");
           this.TaskIndex = parseInt(window.localStorage.getItem("TaskIndex"));
-          this.CurrentTask = window.localStorage.getItem("CrrentTask");
-          this.NumOfPassTask = window.localStorage.getItem("NumOfPassTask");
+          this.CurrentTask = parseInt(window.localStorage.getItem("CrrentTask"));
+          this.CurrentTaskProgress = 
+          this.NumOfPassTask = parseInt(window.localStorage.getItem("NumOfPassTask"));
           this.MyTask = JSON.parse(window.localStorage.getItem("MyTask"));
+          this.MyPassTask = JSON.parse(window.localStorage.getItem("MyPassTask"));
           this.update = function(){//是要從誰更新誰咧？
 	          this.Name = window.localStorage.getItem("Name");
           	this.Level = window.localStorage.getItem("Level");
@@ -122,7 +132,6 @@
 	          this.MyTask = JSON.parse(window.localStorage.getItem("MyTask"));
           };
         };
-        */
       }
     </script>
     <script type="text/javascript" charset="utf-8">
@@ -155,7 +164,7 @@
             </script>
             <p id = "currenttask">目前進行任務：Ubike放暑假</p>
             <script type="text/javascript" charset="utf-8">
-            document.getElementById("username").innerHTML = "目前進行任務："+currentUser.CurrentTask;
+            //document.getElementById("username").innerHTML = "目前進行任務："+ currentUser.CurrentTask;
             </script>
           </div>
         </div>
@@ -168,7 +177,7 @@
               <p>搖滾、藝文、台北大安區</p>
               <p>經驗值：15 獎勵：啤酒一瓶</p>
             </a></li>
-            <li><a href="taskinfo/task3.html">
+            <li><a href="taskinfo/task3.html" rel="external">
               <img src="img/oslo.png" />
               <h3>Oslo, AUGUST 31st</h3>
               <p>電影、藝文、台北中山區</p>
@@ -191,7 +200,7 @@
       <li><a href="TaskDefault.html" rel="external" data-icon="grid" data-iconpos="top" data-transistion="flip">Tasks</a></li>
       <li><a href="index.html" rel="external" data-icon="home" data-iconpos="top" data-transistion="flip">Home</a></li>
       <li><a href="MyLocation.html" rel="external" data-icon="map" data-iconpos="top" data-transistion="flip">Map</a></li>
-      <li><a href="StartTask.html" data-icon="gear" data-iconpos="top" data-transistion="flip">Go</a></li>
+      <li><a href="StartTask.html" rel="external" data-icon="gear" data-iconpos="top" data-transistion="flip">Go</a></li>
      </ul>
      </div><!-- /navbar -->
      </div><!-- /footer -->

@@ -1,13 +1,18 @@
+/**System Global Variable**/
+IsLunched = false;
+
+
 function User(){
 	this.Name = window.localStorage.getItem("Name");
-	this.Level = window.localStorage.getItem("Level");
-	this.Exp = window.localStorage.getItem("Exp");
-	this.NextLevelExp = window.localStorage.getItem("NextLevelExp");
-	this.Photo = window.localStorage.getItem("Photo");
-	this.TaskIndex = parseInt(window.localStorage.getItem("TaskIndex"));
-	this.CurrentTask = window.localStorage.getItem("CrrentTask");
-	this.NumOfPassTask = window.localStorage.getItem("NumOfPassTask");
-	this.MyTask = JSON.parse(window.localStorage.getItem("MyTask"));
+  this.Level = window.localStorage.getItem("Level");
+  this.Exp = window.localStorage.getItem("Exp");
+  this.NextLevelExp = window.localStorage.getItem("NextLevelExp");
+  this.Photo = window.localStorage.getItem("Photo");
+  this.TaskIndex = parseInt(window.localStorage.getItem("TaskIndex"));
+  this.CurrentTask = parseInt(window.localStorage.getItem("CrrentTask"));
+  this.NumOfPassTask = parseInt(window.localStorage.getItem("NumOfPassTask"));
+  this.MyTask = JSON.parse(window.localStorage.getItem("MyTask"));
+  this.MyPassTask = JSON.parse(window.localStorage.getItem("MyPassTask"));
 	this.update = function(){//是要從誰更新誰咧？
 		this.Name = window.localStorage.getItem("Name");
 		this.Level = window.localStorage.getItem("Level");
@@ -22,7 +27,9 @@ function User(){
 	//this.save = function(){}
 }
 /**GoogleMap**/
-function GoogleMapInitialize(MyLatitude, MyLongitude) {
+function GoogleMapInitialize() {
+  var MyLatitude = window.localStorage.getItem("MyLatitude");
+  var MyLongitude = window.localStorage.getItem("MyLongitude");
   var mapOptions = {
     //center: new google.maps.LatLng(location.coords.latitude, location.coords.longitude),
   	center: new google.maps.LatLng(MyLatitude, MyLongitude),
@@ -31,7 +38,7 @@ function GoogleMapInitialize(MyLatitude, MyLongitude) {
   };
   var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 }
-google.maps.event.addDomListener(window, 'load', GoogleMapInitialize);
+//google.maps.event.addDomListener(window, 'load', GoogleMapInitialize);
 
 function codeAddress() {
   var address = document.getElementById('address').value;

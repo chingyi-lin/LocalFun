@@ -23,7 +23,7 @@
     	var taskTag = data.feed.entry[i].gsx$tasktag.$t;
     	var taskReward = data.feed.entry[i].gsx$taskreward.$t;
     	var taskPhoto = data.feed.entry[i].gsx$taskphoto.$t;
-    	document.write('<li><a href="task' + number + '.html"><img src=' + taskPhoto +'/>');
+    	document.write('<li><a href="task' + number + '.html" rel="external"><img src=' + taskPhoto +'/>');
     	document.write('<h3' + taskName +'</h3>');
 			document.write('<p>' + taskTag +'</p>');
 			document.write('<p>' + taskReward + '</p></a></li>');
@@ -37,7 +37,7 @@
    			<li data-role="list-divider">已接收任務一覽</li>
 	    <script type='text/javascript'>
     	for(var i = 1; i < parseInt(window.localStorage["TaskIndex"]); i++){
-    		showTask(currentUser.MyTask[i]);
+    		showTaskInList(currentUser.MyTask[i]);
     	}
     	</script>
     </div>

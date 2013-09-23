@@ -17,40 +17,24 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUIxTb_ba3zj40nvnjnLHPt00dPy4Ml0E&sensor=true"></script>
     </script>
     <script type="text/javascript" charset="utf-8">
+    function activateTask(TaskNumber){
+    	tasknumber = String(TaskNumber);
+    	window.localStorage.setItem("CurrentTask", tasknumber);
+    	var hide = document.getElementById('switch');
+    	var show = document.getElementById('activated');
+    	hide.style.display = 'none';
+    	show.style.display = '';
+    }
     function openCameraPage(){
     	var ref = window.open('camera.html', '_blank', 'location=yes');
       ref.addEventListener('loaderror', function(event) { alert('error: ' + event.message); });
+      
     }
    	function openLocationPage(){
-   		var ref = window.open('camera.html', '_blank', 'location=yes');
+   		var ref = window.open('MyLocation.html', '_blank', 'location=yes');
       ref.addEventListener('loaderror', function(event) { alert('error: ' + event.message); });
    	}
-    function receiveTask(TaskNumber){//verified
-      var i = parseInt(window.localStorage["TaskIndex"]);
-      if(i>3){
-        navigator.notification.alert(
-            '你接太多任務囉，最多只能同時接收3個任務，若欲放棄可點選下方「任務」按鈕。',  // message
-            function(){
-            	window.scrollTo(0,document.body.scrollHeight);//not verified
-            },         // callback
-            '任務數量已達上限',            // title
-            '確認'                  // buttonName
-        );
-      } else{ 
-	      var MyTask = JSON.parse(window.localStorage["MyTask"]);
-	      MyTask[i+1] = TaskNumber;
-	      window.localStorage["TaskIndex"] = String(i+1);
-	      window.localStorage["MyTask"] = JSON.stringify(MyTask);
-	      navigator.notification.alert(
-            '已接受任務',  // message
-            function(){
-            	window.scrollTo(0,document.body.scrollHeight);//not verified
-            },         // callback
-            '成功',            // title
-            '確認'                  // buttonName
-        );
-	     }
-    }
+
     var taskName;
     var allNum;
     var data;
@@ -87,15 +71,18 @@
       </div><!-- /header -->
       <div data-role = "content">
       	<div class = "TaskInfo">
-        <script type="text/javascript" charset="utf-8">
-        showTask(1);
-        </script>
-       </div>
-       <div>
-       	<h4>*** 開始執行任務 ***</h4>
-	      <a href="#" data-role="button" data-inline="true" onclick="openCameraPage()">拍照</a>
-	      <a href="#" data-role="button" data-inline="true" onclick="openLocationPage()">打卡</a>
-  	   </div>
+        	<script type="text/javascript" charset="utf-8">
+        	showTask(1);
+        	</script>
+       	</div>
+      	<div id = "switch" style = "display:''">
+       		<a href="#" data-role="button" data-inline="true" onclick="activateTask()">啓動任務</a>
+       	</div>
+       	<div id = "activated" style = "display:none">
+       		<h4>*** 開始執行任務 ***</h4>
+       		<a href="#" data-role="button" data-inline="true" onclick="openCameraPage()">拍照</a>
+       		<a href="#" data-role="button" data-inline="true" onclick="openLocationPage()">打卡</a>
+       	</div>
       </div><!-- /content -->
       <div data-role="footer">
         <div data-role="navbar">
@@ -103,7 +90,7 @@
             <li><a href="TaskDefault.html" rel="external" data-icon="grid" data-iconpos="top" data-transistion="flip">Tasks</a></li>
 			      <li><a href="index.html" rel="external" data-icon="home" data-iconpos="top" data-transistion="flip">Home</a></li>
 			      <li><a href="MyLocation.html" rel="external" data-icon="map" data-iconpos="top" data-transistion="flip">Map</a></li>
-			      <li><a href="StartTask.html" data-icon="gear" data-iconpos="top" data-transistion="flip">Go</a></li>
+			      <li><a href="StartTask.html" rel="external" data-icon="gear" data-iconpos="top" data-transistion="flip">Go</a></li>
           </ul>
        </div><!-- /navbar -->
       </div><!-- /footer -->
